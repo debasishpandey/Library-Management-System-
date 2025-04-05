@@ -1,0 +1,109 @@
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+    transition: background-color 0.5s, color 0.5s;
+}
+.dark-mode .bg-light {
+    background-color: #1e1e1e !important;
+    transition: background-color 0.5s;
+}
+.dark-mode .bg-primary {
+    background-color: #333 !important;
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s forwards;
+}
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.card {
+    transition: transform 0.3s ease-in-out;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.table th, .table td {
+    vertical-align: middle;
+}
+.card-header {
+    background-color: #007bff;
+    color: #fff;
+}
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    .card-title {
+        font-size: 1rem;
+    }
+    .lead {
+        font-size: 0.9rem;
+    }
+    .btn-lg {
+        font-size: 0.9rem;
+    }
+}
+
+/* Light Mode (Default) */
+body.light-mode {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Profile Box (Initially Hidden) */
+.profile-box {
+    position: fixed;
+    top: 60px;
+    right: -30%; /* Hidden by default */
+    width: 25%;  /* 1/4th of the screen */
+    max-width: 350px; /* Set a max width for large screens */
+    min-width: 250px; /* Set a min width for smaller screens */
+    z-index: 1000;
+    transition: right 0.3s ease-in-out;
+}
+
+/* Slide In Effect */
+.profile-box.active {
+    right: 10px; /* Slide in from the right */
+}
+
+/* Profile Box Styling */
+.profile-box .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: 0.3s;
+    background-color: #fff;
+    padding: 20px;
+    height: 320px; /* Slightly increased height */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
+    justify-content: center; /* Center vertically */
+}
+/* Dark Mode Adjustments */
+.dark-mode .profile-box .card {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Hover Effect */
+.profile-box .card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.profile-box .card img {
+    width: 90px; /* Increase profile picture size */
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;}

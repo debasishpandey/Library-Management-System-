@@ -1,0 +1,218 @@
+
+
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+    transition: background-color 0.5s, color 0.5s;
+}
+.dark-mode .bg-light {
+    background-color: #1e1e1e !important;
+    transition: background-color 0.5s;
+}
+.dark-mode .bg-primary {
+    background-color: #333 !important;
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s forwards;
+}
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.card {
+    transition: transform 0.3s ease-in-out;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.table th, .table td {
+    vertical-align: middle;
+}
+.card-header {
+    background-color: #007bff;
+    color: #fff;
+}
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    .card-title {
+        font-size: 1rem;
+    }
+    .lead {
+        font-size: 0.9rem;
+    }
+    .btn-lg {
+        font-size: 0.9rem;
+    }
+}
+
+.modal-header {
+    border-bottom: 2px solid #dee2e6;
+}
+.modal-footer {
+    border-top: 2px solid #dee2e6;
+}
+
+
+.navbar {
+    transition: background-color 0.3s ease;
+}
+
+.navbar-dark.bg-secondary {
+    background-color: #343a40 !important;
+}
+
+.navbar-dark.bg-secondary.navbar-light {
+    background-color: #f8f9fa !important;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+
+.carousel-caption h5 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow for better visibility */
+    margin-bottom: 10px;
+}
+
+.carousel-caption p {
+    color: #f0f0f0;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Subtle shadow */
+    line-height: 1.5;
+    max-width: 80%; /* Restrict width for better readability */
+    margin: 0 auto; /* Center the text */
+}
+
+/* Dark mode styles */
+body.dark-mode .carousel-caption h5,
+body.dark-mode .carousel-caption p {
+    color: #ffebcd; /* Light cream color for better contrast */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+
+
+
+
+
+/* Dark mode styles for forms and inputs */
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+    background-color: #495057;
+    color: #f8f9fa;
+    border: 1px solid #6c757d;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+    color: #ced4da;
+}
+
+.dark-mode .form-label {
+    color: #f8f9fa;
+}
+
+/* Dark mode for table cells */
+.dark-mode .table tbody tr td,
+.dark-mode .table thead th {
+    background-color: #3a3f44;
+    color: #f8f9fa;
+}
+
+/* Hover effect for rows in dark mode */
+.dark-mode .table tbody tr:hover {
+    background-color: #495057;
+}
+
+/* Dark mode for cards */
+.dark-mode .card {
+    background-color: #343a40;
+    color: #f8f9fa;
+    border: 1px solid #6c757d;
+}
+
+/* Dark mode for card headers */
+.dark-mode .card-header {
+    background-color: #212529;
+    border-bottom: 1px solid #6c757d;
+    color: #f8f9fa;
+}
+
+/* Button hover effect for better interaction */
+.dark-mode .btn-success:hover {
+    background-color: #218838;
+}
+
+.dark-mode .btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Smooth table design */
+.table {
+    border-collapse: separate; /* Prevents borders from collapsing */
+    border-spacing: 0; /* Removes default spacing */
+    border-radius: 12px; /* Rounded corners */
+    overflow: hidden; /* Hides overflow for rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+/* Table headers */
+.table th {
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #dee2e6;
+    border-top: none; /* Remove top border for rounded effect */
+}
+
+/* Table rows */
+.table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #dee2e6;
+}
+
+/* Table hover effect */
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Dark mode support */
+body.dark-mode .table {
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .table th {
+    background-color: #3a3a3a;
+    color: #fff;
+    border-color: #555;
+}
+
+body.dark-mode .table td {
+    background-color: #2b2b2b;
+    color: #ccc;
+    border-color: #444;
+}
+
+body.dark-mode .table tbody tr:hover {
+    background-color: #3b3b3b;
+}
+
