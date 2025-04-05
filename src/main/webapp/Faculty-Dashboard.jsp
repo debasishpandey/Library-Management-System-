@@ -253,7 +253,7 @@
                     <input type="hidden" name="requestId" value="${defaulter.id}">
                     <input type="hidden" name="registrationNo" value="${defaulter.registrationNo}">
                     <button type="submit" class="btn btn-danger">
-                      <i class="fa fa-undo me-2"></i> Return & Pay Fine
+                      <i class="fa fa-undo me-2"></i>Pay Fine & Return
                     </button>
                   </form>
                 </td>
@@ -262,7 +262,7 @@
           </c:when>
           <c:otherwise>
             <tr>
-              <td colspan="6" class="text-center">No defaulter books to return.</td>
+              <td colspan="7" class="text-center">No defaulter books to return.</td>
             </tr>
           </c:otherwise>
         </c:choose>
