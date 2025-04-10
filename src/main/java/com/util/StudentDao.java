@@ -39,6 +39,21 @@ public class StudentDao {
         }
         return false;
     }
+
+    public boolean deleteStudent(String id) {
+        try {
+
+            PreparedStatement ps=con.prepareStatement("delete from student where registration_number=?");
+            ps.setString(1, id);
+           int row= ps.executeUpdate();
+            if(row>0){
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
     public String loginStudent(String registrationNumber, String password) {
 
         try {

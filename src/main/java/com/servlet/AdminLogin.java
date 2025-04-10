@@ -11,7 +11,8 @@ import java.sql.*;
 
 @WebServlet("/Alogin")
 public class AdminLogin extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    static  Connection con=DbConnection.getConnection();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,11 +25,8 @@ public class AdminLogin extends HttpServlet {
         String password = req.getParameter("password");
         System.out.println(username+" "+password);
 
-        Connection con = null;
-        try {
-            DbConnection db = new DbConnection();
-            con=db.getConnection();
 
+        try {
           PreparedStatement ps=con.prepareStatement("select * from admin where username=? and password=?");
           ps.setString(1,username);
           ps.setString(2,password);

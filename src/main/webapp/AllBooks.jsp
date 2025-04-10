@@ -87,7 +87,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="./img/logo.png" alt="Logo" width="40" height="40" class="me-2">
+      <img src="./img/logo.jpg" alt="Logo" width="40" height="40" class="me-2">
       Student Dashboard
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -95,9 +95,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="SDashboard">Dashboard</a></li>
         <li class="nav-item">
           <a class="nav-link" href="#" id="profileIcon">
-            <img src="./img/logo.png" alt="Profile" width="40" height="40" class="rounded-circle">
+            <img src="./ProfilePhoto/${sessionScope.student.registrationNumber}.jpg" alt="Profile" width="40" height="40" class="rounded-circle">
           </a>
         </li>
       </ul>
@@ -109,13 +110,16 @@
 <!-- Sliding Profile Box -->
 <div class="profile-box" id="profileBox">
   <div class="card text-center">
-    <img src="./img/logo.png" alt="Profile" class="rounded-circle mb-2" width="80">
-    <h5 class="mb-1">John Doe</h5>
-    <small class="text-muted">Registration No: 12345678</small>
+    <img src="./ProfilePhoto/${sessionScope.student.registrationNumber}.jpg" alt="Profile" class="rounded-circle mb-2" width="80">
+    <h5 class="mb-1">${sessionScope.student.name}</h5>
+    <small class="text-muted">Registration No:${sessionScope.student.registrationNumber}</small>
     <hr>
-    <p class="mb-1"><strong>Mobile:</strong> +91 9876543210</p>
-    <p class="mb-1"><strong>Email:</strong> johndoe@example.com</p>
-    <button class="btn btn-sm btn-primary mt-2">Update</button>
+    <p class="mb-1"><strong>Mobile:</strong> +91 ${sessionScope.student.phoneNumber}</p>
+    <p class="mb-1"><strong>Email:</strong> ${sessionScope.student.email}</p>
+    <form action="StudentUpdate.jsp">
+      <button class="btn btn-sm btn-primary mt-2" >Update</button>
+    </form>
+
     <button class="btn btn-sm btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
   </div>
 </div>

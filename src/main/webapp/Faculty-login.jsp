@@ -87,121 +87,14 @@
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
-            <p class="text-center mt-3">
-                <a href="passwordReset.jsp" id="forgotPasswordLink">Forgot Password?</a>
-            </p>
+
         </form>
-        <p class="text-center mt-3">Don't have an account? <a href="#" id="signupLink">Signup</a></p>
+
     </div>
 </div>
 
 
-<%--<script>--%>
-<%--    $(document).ready(function() {--%>
-<%--        // Redirect to dashboard if already logged in--%>
-<%--        if (localStorage.getItem('isLoggedIn') === 'true') {--%>
-<%--            window.location.href = 'dashboard.html';--%>
-<%--        }--%>
 
-<%--        // Login functionality--%>
-<%--        $('#loginForm').submit(function(event) {--%>
-<%--            event.preventDefault();--%>
-<%--            let username = $('#username').val();--%>
-<%--            let password = $('#password').val();--%>
-
-<%--            let user = JSON.parse(localStorage.getItem('user'));--%>
-
-<%--            if (user && username === user.regd && password === user.password) {--%>
-<%--                alert('Login Successful');--%>
-<%--                localStorage.setItem('isLoggedIn', 'true');--%>
-<%--                window.location.href = 'dashboard.html';--%>
-<%--            } else {--%>
-<%--                alert('Invalid Credentials');--%>
-<%--            }--%>
-<%--        });--%>
-
-<%--        // Handle signup form--%>
-<%--        $('#signupLink').click(function(event) {--%>
-<%--            event.preventDefault();--%>
-<%--            $('#formContainer').html(`--%>
-<%--                    <h2>Signup</h2>--%>
-<%--                    <form id="signupForm">--%>
-<%--                        <div class="mb-3">--%>
-<%--                            <label for="name" class="form-label">Name</label>--%>
-<%--                            <input type="text" class="form-control" id="name" required>--%>
-<%--                        </div>--%>
-<%--                        <div class="row mb-3">--%>
-<%--                            <div class="col">--%>
-<%--                                <label for="regd" class="form-label">Registration No</label>--%>
-<%--                                <input type="text" class="form-control" id="regd" required>--%>
-<%--                            </div>--%>
-<%--                            <div class="col">--%>
-<%--                                <label for="mobile" class="form-label">Mobile No</label>--%>
-<%--                                <input type="text" class="form-control" id="mobile" required>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="mb-3">--%>
-<%--                            <label for="password" class="form-label">Password</label>--%>
-<%--                            <input type="password" class="form-control" id="password" required>--%>
-<%--                        </div>--%>
-<%--                        <button type="submit" class="btn btn-primary">Signup</button>--%>
-<%--                    </form>--%>
-<%--                `);--%>
-<%--            attachSignupHandler();--%>
-<%--        });--%>
-
-<%--        // Signup form submit handler--%>
-<%--        function attachSignupHandler() {--%>
-<%--            $('#signupForm').submit(function(event) {--%>
-<%--                event.preventDefault();--%>
-<%--                let name = $('#name').val();--%>
-<%--                let regd = $('#regd').val();--%>
-<%--                let mobile = $('#mobile').val();--%>
-<%--                let password = $('#password').val();--%>
-
-<%--                let user = {--%>
-<%--                    name: name,--%>
-<%--                    regd: regd,--%>
-<%--                    mobile: mobile,--%>
-<%--                    password: password--%>
-<%--                };--%>
-
-<%--                localStorage.setItem('user', JSON.stringify(user));--%>
-<%--                alert(`Signup Successful!\nName: ${name}\nRegd No: ${regd}\nMobile: ${mobile}`);--%>
-
-<%--                // After signup, show login form--%>
-<%--                $('#formContainer').html(`--%>
-<%--                        <h2>Login</h2>--%>
-<%--                        <form id="loginForm">--%>
-<%--                            <div class="mb-3">--%>
-<%--                                <label for="username" class="form-label">Username</label>--%>
-<%--                                <input type="text" class="form-control" id="username" required>--%>
-<%--                            </div>--%>
-<%--                            <div class="mb-3">--%>
-<%--                                <label for="password" class="form-label">Password</label>--%>
-<%--                                <input type="password" class="form-control" id="password" required>--%>
-<%--                            </div>--%>
-<%--                            <button type="submit" class="btn btn-primary">Login</button>--%>
-<%--                        </form>--%>
-<%--                    `);--%>
-
-<%--                // Automatically proceed to login after signup--%>
-<%--                $('#loginForm').submit(function(event) {--%>
-<%--                    event.preventDefault();--%>
-<%--                    let username = $('#username').val();--%>
-<%--                    let password = $('#password').val();--%>
-
-<%--                    if (username === regd && password === password) {--%>
-<%--                        localStorage.setItem('isLoggedIn', 'true');--%>
-<%--                        window.location.href = 'dashboard.html';--%>
-<%--                    } else {--%>
-<%--                        alert('Invalid Credentials');--%>
-<%--                    }--%>
-<%--                });--%>
-<%--            });--%>
-<%--        }--%>
-<%--    });--%>
-<%--</script>--%>
 </body>
 </html>
 

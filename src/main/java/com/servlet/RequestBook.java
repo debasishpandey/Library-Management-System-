@@ -1,6 +1,6 @@
 package com.servlet;
 
-import com.util.DbConnection;
+
 import com.util.RequestDetails;
 import com.util.RequestDetailsDao;
 import jakarta.servlet.ServletException;
@@ -16,10 +16,26 @@ import java.time.LocalDate;
 
 @WebServlet("/RequestBook")
 public class RequestBook extends HttpServlet {
+
+
     RequestDetailsDao requestDetailsDao = RequestDetailsDao.getInstance();
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        if (session != null ) {
+            if (session.getAttribute("isStudent")!=null &&(Boolean) session.getAttribute("isStudent"))
+                resp.sendRedirect("SDashboard");
+            else {
+                req.getRequestDispatcher("SLogin").forward(req, resp);
+            }
+        }else {
+            req.getRequestDispatcher("SLogin").forward(req, resp);
+        }
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-
 
         String bookId = request.getParameter("bookId");
         String registrationNo =session.getAttribute("registrationNo").toString();
@@ -41,7 +57,6 @@ public class RequestBook extends HttpServlet {
             newId=maxId+1;
         }
         String requestId=requestDetailsDao.generateRequestId(newId);
-
 
         RequestDetails requestDetails = new RequestDetails(requestId,registrationNo,username, bookId, bookName,dt,"requested",null );
 

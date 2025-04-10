@@ -1,6 +1,5 @@
 package com.servlet;
 
-import com.util.DbConnection;
 import com.util.Student;
 import com.util.StudentDao;
 import jakarta.servlet.ServletException;
@@ -10,8 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.*;
 
 
 @WebServlet("/SLogin")
@@ -21,7 +18,17 @@ StudentDao studentDao = StudentDao.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("StudentLogin.jsp").forward(req, resp);
+        HttpSession session = req.getSession(false);
+        if (session != null ) {
+            if (session.getAttribute("isStudent")!=null &&(Boolean) session.getAttribute("isStudent"))
+                resp.sendRedirect("SDashboard");
+            else {
+                req.getRequestDispatcher("StudentLogin.jsp").forward(req, resp);
+            }
+        }else {
+            req.getRequestDispatcher("StudentLogin.jsp").forward(req, resp);
+        }
+
     }
 
     @Override
@@ -30,13 +37,15 @@ StudentDao studentDao = StudentDao.getInstance();
         String registrationNo = req.getParameter("registrationNo");
         String password = req.getParameter("password");
 
-        HttpSession session = req.getSession();
-        session.setAttribute("isStudent", true);
+
+
 
        String name= studentDao.loginStudent(registrationNo, password);
         Student student = studentDao.getStudent(registrationNo);
 
             if( name!=null) {
+                HttpSession session = req.getSession();
+                session.setAttribute("isStudent", true);
                 session.setAttribute("user",name);
                 session.setAttribute("student", student);
                 session.setAttribute("registrationNo",registrationNo);

@@ -14,6 +14,12 @@ import java.sql.Date;
 @WebServlet("/updateStudent")
 public class UpdateStudent extends HttpServlet {
     StudentDao studentDao = StudentDao.getInstance();
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect(req.getContextPath());
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");

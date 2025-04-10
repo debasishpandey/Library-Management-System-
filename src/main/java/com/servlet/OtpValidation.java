@@ -13,11 +13,9 @@ public class OtpValidation extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String email = (String) session.getAttribute("email");
         String otp = (String) session.getAttribute("otp");
         String EnteredOtp = req.getParameter("otp");
         if (EnteredOtp.equals(otp)) {
-
             req.getRequestDispatcher("Change-Password.jsp").forward(req, resp);
         }
     }

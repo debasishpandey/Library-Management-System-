@@ -41,7 +41,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fade-in sticky-top">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="./img/logo.jpg1" alt="Logo" width="40" height="40" class="d-inline-block align-top me-2">
+      <img src="./img/logo.jpg" alt="Logo" width="40" height="40" class="d-inline-block align-top me-2">
 
       Faculty Dashboard
     </a>
@@ -54,16 +54,15 @@
         <li class="nav-item"><a class="nav-link" href="#manageBooks">Manage Books</a></li>
         <li class="nav-item"><a class="nav-link" href="#bookRequests">View Request</a></li>
         <li class="nav-item"><a class="nav-link" href="#returnBook">Return Book</a></li>
-        <li class="nav-item"><a class="nav-link" href="#bookList">Book List</a></li>
-        <li class="nav-item"><a class="nav-link" href="#List">Student List</a></li>
-        <li class="nav-item"><a class="nav-link" href="#studentBooks">Request Details</a></li>
+        <li class="nav-item"><a class="nav-link" href="AllBooksFaculty">Book List</a></li>
+        <li class="nav-item"><a class="nav-link" href="AllStudent">Student List</a></li>
+        <li class="nav-item"><a class="nav-link" href="AllDetails">Request Details</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Profile
           </a>
           <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-            <li><a class="dropdown-item" href="#">Profile Settings</a></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <li><a class="dropdown-item" href="FLogout">Logout</a></li>
           </ul>
         </li>
         <li class="nav-item d-flex align-items-center">
@@ -87,22 +86,19 @@
     <div class="carousel-item active" data-bs-interval="10000">
       <img src="./img/2307-w064-n002-491B-p1-491.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5 >First slide label</h5>
-        <p >Some representative placeholder content for the first slide.</p>
+
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
       <img src="./img/300a4be5-d1cd-4b06-b60c-36f680c4ad23.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
+
       </div>
     </div>
     <div class="carousel-item">
       <img src="./img/ba6308de-ca55-42e3-969f-eee97d4d2c3c.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
+
       </div>
     </div>
   </div>
@@ -409,76 +405,15 @@
 </section>
 
 
-<section id="bookList" class="py-5 fade-in">
-  <div class="container">
-    <h2>All Books</h2>
-    <input type="text" id="searchBar" class="form-control mb-3" placeholder="Search for books...">
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-        <tr>
-          <th>Book Id</th>
-          <th>Book Title</th>
-          <th>Author</th>
-          <th>Available Copies</th>
-        </tr>
-        </thead>
-        <tbody id="bookTable">
-        <c:forEach var="book" items="${sessionScope.allBooks}" varStatus="status">
-          <tr class="book-row ${status.index >= 10 ? 'd-none' : ''}">
-            <td>${book.id}</td>
-            <td>${book.name}</td>
-            <td>${book.author}</td>
-            <td>${book.quantity}</td>
-          </tr>
-        </c:forEach>
-        </tbody>
-      </table>
-    </div>
-    <button id="showAllBtn" class="btn btn-primary mt-3 d-none" onclick="showAllBooks()">Show All Books</button>
-  </div>
-</section>
 
 
 
 
 
-<section id="studentBooks" class="py-5 fade-in">
-  <div class="container">
-    <h2>All Students' Book Details</h2>
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-        <tr>
-          <th>Request Id</th>
-          <th>Registration No</th>
-          <th>Student Name</th>
-          <th>Book Title</th>
-          <th>Date Issued</th>
-          <th>Status</th>
-          <th>Return Date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Loop through student book details dynamically (replace with data from MySQL) -->
-        <c:forEach var="studentBook" items="${sessionScope.allDetails}">
-          <tr>
-            <td>${studentBook.id}</td>
-            <td>${studentBook.registrationNo}</td>
-            <td>${studentBook.studentName}</td>
-            <td>${studentBook.bookName}</td>
-            <td>${studentBook.date}</td>
-            <td>${studentBook.status}</td>
-            <td>${studentBook.dueDate != null ? studentBook.dueDate : '--'}</td>
-          </tr>
-        </c:forEach>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
 
-<a href="AllStudents.jsp">all student</a>
+
+
+
 <footer class="bg-secondary text-white text-center py-3">
   <p>&copy; 2025 Library Management System. All rights reserved.</p>
 </footer>

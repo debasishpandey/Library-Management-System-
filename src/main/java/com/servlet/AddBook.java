@@ -2,7 +2,7 @@ package com.servlet;
 
 import com.util.Book;
 import com.util.BookDao;
-import com.util.DbConnection;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,19 +11,22 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 @WebServlet("/addBookServlet")
 public class AddBook extends HttpServlet {
     BookDao bookDao = BookDao.getInstance();
 
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         HttpSession session = req.getSession(false);
-        if (session != null) {
-
+        if (session != null ) {
+            if (session.getAttribute("faculty")!=null &&(Boolean) session.getAttribute("faculty"))
+                resp.sendRedirect("FDashboard");
+            else {
+                req.getRequestDispatcher("Faculty-login.jsp").forward(req, resp);
+            }
+        }else {
+            req.getRequestDispatcher("Faculty-login.jsp").forward(req, resp);
         }
     }
 

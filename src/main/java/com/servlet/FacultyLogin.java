@@ -1,9 +1,7 @@
 package com.servlet;
 
-import com.util.Book;
-import com.util.BookDao;
+
 import com.util.DbConnection;
-import com.util.RequestDetailsDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,17 +11,26 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.ArrayList;
+
 
 @WebServlet("/FLogin")
 public class FacultyLogin extends HttpServlet {
-    RequestDetailsDao requestDetailsDao = RequestDetailsDao.getInstance();
 
     static  Connection con=DbConnection.getConnection();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("Faculty-login.jsp").forward(req, resp);
+        HttpSession session = req.getSession(false);
+        if (session != null ) {
+            if (session.getAttribute("faculty")!=null &&(Boolean) session.getAttribute("faculty"))
+            resp.sendRedirect("FDashboard");
+            else {
+                req.getRequestDispatcher("Faculty-login.jsp").forward(req, resp);
+            }
+        }else {
+            req.getRequestDispatcher("Faculty-login.jsp").forward(req, resp);
+        }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,7 +38,6 @@ public class FacultyLogin extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         PrintWriter out = resp.getWriter();
-
 
         try{
             PreparedStatement ps=con.prepareStatement("select * from faculty where username=? and password=?");
@@ -44,10 +50,8 @@ public class FacultyLogin extends HttpServlet {
                 session.setAttribute("faculty", true);
                 session.setAttribute("msg", "Login Successful");
                 session.setAttribute("type", "success");
-               req.getRequestDispatcher("FDashboard").forward(req, resp);
-
+                req.getRequestDispatcher("FDashboard").forward(req, resp);
             }else {
-
                 req.setAttribute("error", "Invalid username or password!");
                 req.setAttribute("msg", "Login Failed");
                 req.setAttribute("type", "error");

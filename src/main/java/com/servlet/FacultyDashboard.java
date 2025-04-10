@@ -2,16 +2,14 @@ package com.servlet;
 
 
 import com.util.*;
-import jakarta.mail.Session;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
-import java.sql.*;
 import java.util.ArrayList;
 @WebServlet("/FDashboard")
 public class FacultyDashboard extends HttpServlet {
@@ -21,11 +19,14 @@ public class FacultyDashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
-        if (session != null && (boolean)session.getAttribute("faculty")) {
-             this.doPost(req, resp);
-
+        if (session != null ) {
+            if (session.getAttribute("faculty")!=null &&(Boolean) session.getAttribute("faculty"))
+                this.doPost(req, resp);
+            else {
+                req.getRequestDispatcher("Faculty-login.jsp").forward(req, resp);
+            }
         }else {
-            resp.sendRedirect("FLogin");
+            req.getRequestDispatcher("Faculty-login.jsp").forward(req, resp);
         }
     }
 

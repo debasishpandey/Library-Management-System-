@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.sql.*;
+
 
 @WebServlet("/Send")
 public class EmailSender extends HttpServlet {
@@ -30,6 +30,11 @@ public class EmailSender extends HttpServlet {
         }
 
         return otp.toString();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect(req.getContextPath() );
     }
 
     @Override

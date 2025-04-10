@@ -147,21 +147,5 @@ public class BookDao {
         }
     }
 
-    public int maxId(){
 
-        try{
-
-            PreparedStatement ps=con.prepareStatement("SELECT MAX(CAST(RIGHT(bookid, 4) AS UNSIGNED)) AS last_code\n" +
-                    "FROM book\n" +
-                    "WHERE RequestId LIKE 'GIET-BK-%';\n");
-            ResultSet set = ps.executeQuery();
-            if(set.next()){
-                return set.getInt(1);
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return -1;
-    }
 }

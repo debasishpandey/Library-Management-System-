@@ -9,31 +9,40 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.*;
 import java.util.ArrayList;
 
 @WebServlet("/SDashboard")
 public class StudentDashboard extends HttpServlet {
-    BookDao bookDao =BookDao.getInstance();
+
     RequestDetailsDao requestDetailsDao = RequestDetailsDao.getInstance();
     StudentDao studentDao = StudentDao.getInstance();
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doPost(req, resp);
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        String name = (String) session.getAttribute("user");
-        String registrationNo = (String) session.getAttribute("registrationNo");
+        HttpSession session = req.getSession(false);
+       if (session != null &&session.getAttribute("isStudent")!=null && (Boolean) session.getAttribute("isStudent")) {
+           String registrationNo = (String) session.getAttribute("registrationNo");
 
-        ArrayList<Book> allBooks = BookDao.fetchAllBooks();
-        session.setAttribute("allBooks", allBooks);
+           ArrayList<Book> allBooks = BookDao.fetchAllBooks();
+           session.setAttribute("allBooks", allBooks);
 
-        Student student =studentDao.getStudent(registrationNo);
-        student.setPassword(null);
-        session.setAttribute("student", student);
+           Student student =studentDao.getStudent(registrationNo);
+           student.setPassword(null);
+           session.setAttribute("student", student);
 
-        ArrayList<RequestDetails> requestDetails = requestDetailsDao.fetchAllDetailsByStudentId(registrationNo);
-        session.setAttribute("requestDetails", requestDetails);
+           ArrayList<RequestDetails> requestDetails = requestDetailsDao.fetchAllDetailsByStudentId(registrationNo);
+           session.setAttribute("requestDetails", requestDetails);
 
-        req.getRequestDispatcher("Student-Dashboard.jsp").forward(req, resp);
+           req.getRequestDispatcher("Student-Dashboard.jsp").forward(req, resp);
+       }else {
+           resp.sendRedirect("SLogin");
+       }
+
 
     }
 }
