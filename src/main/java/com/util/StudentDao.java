@@ -1,13 +1,15 @@
 package com.util;
 
-import lombok.Getter;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class StudentDao {
-    @Getter
+
     private static final StudentDao instance=new StudentDao();
+    public static StudentDao getInstance() {
+        return instance;
+    }
     static  Connection con=DbConnection.getConnection();
     private StudentDao() {
 

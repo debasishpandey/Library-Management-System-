@@ -1,6 +1,6 @@
 package com.util;
 
-import lombok.Getter;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,8 +10,12 @@ import java.util.ArrayList;
 
 public class BookDao {
 
-    @Getter
+
    private static final BookDao instance=new BookDao();
+
+   public static BookDao getInstance() {
+       return instance;
+   }
     static  Connection con=DbConnection.getConnection();
 
     private BookDao() {}

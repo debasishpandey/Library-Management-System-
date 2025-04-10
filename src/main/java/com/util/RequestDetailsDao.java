@@ -1,6 +1,6 @@
 package com.util;
 
-import lombok.Getter;
+
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -11,9 +11,11 @@ public class RequestDetailsDao {
 
     private RequestDetailsDao(){}
 
-    @Getter
-    private static final RequestDetailsDao instance = new RequestDetailsDao();
 
+    private static final RequestDetailsDao instance = new RequestDetailsDao();
+        public static RequestDetailsDao getInstance() {
+            return instance;
+        }
 
         public String generateRequestId(int id) {
             String prefix="GIET-LMS-";
