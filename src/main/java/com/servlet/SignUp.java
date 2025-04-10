@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.Date;
 @WebServlet("/Register")
 public class SignUp extends HttpServlet {
-    StudentDao studentDao = new StudentDao();
+    StudentDao studentDao =StudentDao.getInstance();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student student = new Student(req.getParameter("registrationNumber")

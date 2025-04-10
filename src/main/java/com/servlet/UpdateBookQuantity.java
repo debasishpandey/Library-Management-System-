@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @WebServlet("/updateQuantity")
 public class UpdateBookQuantity extends HttpServlet {
-    BookDao bookDao = new BookDao();
+    BookDao bookDao = BookDao.getInstance();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String bookId = request.getParameter("bookId");
         int quantity = Integer.parseInt(request.getParameter("quantity"));

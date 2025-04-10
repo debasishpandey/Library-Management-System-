@@ -24,6 +24,15 @@
   <title>Faculty Dashboard - Library Management System</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/FDashboardstyle.css">
+  <!-- Toastr CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+  <!-- jQuery (required for toastr) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Toastr JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
   <script src="./js/ServerCheck.js" defer></script>
 
 </head>
@@ -46,6 +55,7 @@
         <li class="nav-item"><a class="nav-link" href="#bookRequests">View Request</a></li>
         <li class="nav-item"><a class="nav-link" href="#returnBook">Return Book</a></li>
         <li class="nav-item"><a class="nav-link" href="#bookList">Book List</a></li>
+        <li class="nav-item"><a class="nav-link" href="#List">Student List</a></li>
         <li class="nav-item"><a class="nav-link" href="#studentBooks">Request Details</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

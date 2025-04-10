@@ -16,7 +16,7 @@ import java.sql.*;
 
 @WebServlet("/SLogin")
 public class StudentLogin extends HttpServlet {
-StudentDao studentDao = new StudentDao();
+StudentDao studentDao = StudentDao.getInstance();
 
 
     @Override
@@ -40,10 +40,14 @@ StudentDao studentDao = new StudentDao();
                 session.setAttribute("user",name);
                 session.setAttribute("student", student);
                 session.setAttribute("registrationNo",registrationNo);
+                session.setAttribute("msg", "Login successful");
+                session.setAttribute("type", "success");
                 req.getRequestDispatcher("/SDashboard").forward(req, resp);
             }else {
 
                 req.setAttribute("error", "Invalid Registration No or password!");
+                req.setAttribute("type", "error");
+                req.setAttribute("msg", "Invalid Registration No or password!");
                 req.getRequestDispatcher("StudentLogin.jsp").forward(req, resp);
             }
     }

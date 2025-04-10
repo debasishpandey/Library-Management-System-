@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @WebServlet("/ReturnDefaulter")
 public class PaymentPage extends HttpServlet {
-    RequestDetailsDao requestDetailsDao = new RequestDetailsDao();
+    RequestDetailsDao requestDetailsDao =RequestDetailsDao.getInstance();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String registrationNo = req.getParameter("registrationNo");

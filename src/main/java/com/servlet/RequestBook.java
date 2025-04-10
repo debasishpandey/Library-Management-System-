@@ -16,7 +16,7 @@ import java.time.LocalDate;
 
 @WebServlet("/RequestBook")
 public class RequestBook extends HttpServlet {
-    RequestDetailsDao requestDetailsDao = new RequestDetailsDao();
+    RequestDetailsDao requestDetailsDao = RequestDetailsDao.getInstance();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
@@ -47,20 +47,23 @@ public class RequestBook extends HttpServlet {
 
         boolean alreadyRequested = requestDetailsDao.checkBookRequest(bookId,registrationNo );
         if(alreadyRequested){
-            request.setAttribute("message", "Book already requested");
+            session.setAttribute("msg", "Book is already requested");
+            session.setAttribute("type", "warning");
             request.getRequestDispatcher("/SDashboard").forward(request,response);
 
         }else {
             boolean b = requestDetailsDao.addRequest(requestDetails);
 
             if(b){
-                request.setAttribute("message", "Request added");
+                session.setAttribute("msg", "Request added");
+                session.setAttribute("type", "success");
                 session.setAttribute("user",username);
                 request.getRequestDispatcher("/SDashboard").forward(request,response);
             }else
 
             {
-                request.setAttribute("message", "Request not added");
+                session.setAttribute("msg", "Request added");
+                session.setAttribute("type", "error");
                 System.out.println("Error");
                 session.setAttribute("user",username);
                 request.getRequestDispatcher("/SDashboard").forward(request,response);

@@ -15,13 +15,13 @@ import java.sql.*;
 
 @WebServlet("/Approve")
 public class ApproveRequest extends HttpServlet {
-    BookDao bDaoObj =new BookDao();
-    RequestDetailsDao rDaoObj =new RequestDetailsDao();
+    BookDao bDaoObj =BookDao.getInstance();
+    RequestDetailsDao rDaoObj =RequestDetailsDao.getInstance();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String id = req.getParameter("requestId");
-        System.out.println(id);
+
         Date dueDate = Date.valueOf(req.getParameter("dueDate"));
         System.out.println(dueDate);
         String bookId = req.getParameter("bookId");

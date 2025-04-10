@@ -5,11 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class PaymentDetailsDao {
+    static  Connection con=DbConnection.getConnection();
     public boolean addPaymentDetails(PaymentDetails paymentDetails) {
-        Connection con = null;
+
         try{
-            DbConnection db = new DbConnection();
-            con=db.getConnection();
+
             PreparedStatement ps=con.prepareStatement("INSERT INTO paymentdetails (student_Name, request_Id, amount, date, receipt_No)  \n" +
                     "VALUES (?, ?, ?, ?, ?)");
             ps.setString(1,paymentDetails.getStudentName());

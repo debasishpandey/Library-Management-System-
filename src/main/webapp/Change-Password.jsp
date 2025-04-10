@@ -33,8 +33,9 @@
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
   <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%;">
     <h2 class="text-center mb-4">Reset Password</h2>
-    <form id="resetPasswordForm" action="${pageContext.request.contextPath}/reset" method="post">
+    <form id="resetPasswordForm" action="reset" method="post">
       <div class="mb-3">
+        <input type="hidden" value="${requestScope.registrationNo}" name="registrationNo">
         <label for="newPassword" class="form-label">New Password:</label>
         <input type="password" id="newPassword" name="newPassword" class="form-control" required>
       </div>

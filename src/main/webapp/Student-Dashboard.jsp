@@ -21,6 +21,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+    <!-- jQuery (required for toastr) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <style>
         /* Profile Box (Initially Hidden) */
         .profile-box {
@@ -83,9 +92,30 @@
                 right: -30%;
             }
         }
+
     </style>
 </head>
 <body>
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0); // Proxies.
+%>
+
+<%String msg=(String)session.getAttribute("msg");
+String type=(String)session.getAttribute("type");
+%>
+<script>
+    <% if (msg != null && type != null) { %>
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right"
+    };
+    toastr["<%= type %>"]("<%= msg %>");
+    <% session.removeAttribute("msg");
+    session.removeAttribute("type");} %>
+</script>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top">

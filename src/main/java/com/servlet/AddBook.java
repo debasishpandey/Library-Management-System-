@@ -1,5 +1,7 @@
 package com.servlet;
 
+import com.util.Book;
+import com.util.BookDao;
 import com.util.DbConnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,6 +16,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 @WebServlet("/addBookServlet")
 public class AddBook extends HttpServlet {
+    BookDao bookDao = BookDao.getInstance();
+
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+
+        }
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String bookTitle = req.getParameter("bookTitle");
@@ -21,28 +34,18 @@ public class AddBook extends HttpServlet {
         int quantity = Integer.parseInt(req.getParameter("bookCopies"));
         HttpSession session = req.getSession();
 
-        Connection con = null;
-        try {
-            DbConnection db = new DbConnection();
-            con=db.getConnection();
-            PreparedStatement stmt= con.prepareStatement("insert into book (name,author,quantity) values (?,?,?)");
-            stmt.setString(1, bookTitle);
-            stmt.setString(2, bookAuthor);
-            stmt.setInt(3, quantity);
-            int row=stmt.executeUpdate();
-            if (row>0) {
-                System.out.println("Book Added Successfully");
-                session.setAttribute("Added", true);
-                req.getRequestDispatcher("FDashboard").forward(req, resp);
-            }else {
-                session.setAttribute("Added", false);
-                req.getRequestDispatcher("FDashboard").forward(req, resp);
-                System.out.println("Book Not Added Successfully");
-            }
+        Book book = new Book(null, bookTitle, bookAuthor, quantity);
 
+        if (bookDao.addBook(book)) {
+            session.setAttribute("msg", "Book added");
+            session.setAttribute("type", "success");
+            req.getRequestDispatcher("FDashboard").forward(req, resp);
+        }else {
+            session.setAttribute("msg", "Failed to add book");
+            session.setAttribute("type", "error");
+            req.getRequestDispatcher("FDashboard").forward(req, resp);
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
+
     }
 }

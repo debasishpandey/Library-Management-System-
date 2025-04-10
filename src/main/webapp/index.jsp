@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,8 +67,8 @@
         <p class="lead">Efficiently manage books, patrons, and lending activities.</p>
         <a href="javascript:void(0)" class="btn btn-secondary btn-lg" id="getStartedBtn">Get Started</a>
         <div class="role-buttons" id="roleButtons">
-            <a href="StudentLogin.jsp" class="btn btn-primary btn-lg mx-2">Student</a>
-            <a href="Faculty-login.jsp" class="btn btn-success btn-lg mx-2">Faculty</a>
+            <a href="SLogin" class="btn btn-primary btn-lg mx-2">Student</a>
+            <a href="FLogin" class="btn btn-success btn-lg mx-2">Faculty</a>
         </div>
     </div>
 </header>

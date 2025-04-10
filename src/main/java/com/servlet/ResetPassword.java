@@ -13,15 +13,16 @@ import java.io.IOException;
 import java.sql.*;
 @WebServlet("/reset")
 public class ResetPassword extends HttpServlet {
-    StudentDao studentDao = new StudentDao();
+    StudentDao studentDao = StudentDao.getInstance();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String registrationNo = req.getParameter("registrationNo");
+        HttpSession session = req.getSession();
+        String registrationNo = session.getAttribute("registrationNo").toString();
         String password = req.getParameter("newPassword");
         System.out.println(registrationNo+" "+password);
             if(studentDao.changePassword(registrationNo,password)) {
                 System.out.println("Password reset successful");
-                req.getRequestDispatcher("StudentLogin.jsp").forward(req, resp);
+                resp.sendRedirect("SLogin");
             }else {
                 System.out.println("Password reset failed");
                 req.getRequestDispatcher("passwordReset.jsp").forward(req, resp);

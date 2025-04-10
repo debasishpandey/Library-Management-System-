@@ -13,7 +13,7 @@ import java.sql.Date;
 @MultipartConfig
 @WebServlet("/updateStudent")
 public class UpdateStudent extends HttpServlet {
-    StudentDao studentDao = new StudentDao();
+    StudentDao studentDao = StudentDao.getInstance();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");

@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 @WebServlet("/SDashboard")
 public class StudentDashboard extends HttpServlet {
-    BookDao bookDao = new BookDao();
-    RequestDetailsDao requestDetailsDao = new RequestDetailsDao();
-    StudentDao studentDao = new StudentDao();
+    BookDao bookDao =BookDao.getInstance();
+    RequestDetailsDao requestDetailsDao = RequestDetailsDao.getInstance();
+    StudentDao studentDao = StudentDao.getInstance();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();

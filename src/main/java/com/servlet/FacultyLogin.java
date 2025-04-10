@@ -17,18 +17,23 @@ import java.util.ArrayList;
 
 @WebServlet("/FLogin")
 public class FacultyLogin extends HttpServlet {
-    RequestDetailsDao requestDetailsDao = new RequestDetailsDao();
-    private static void loging(){}
+    RequestDetailsDao requestDetailsDao = RequestDetailsDao.getInstance();
+
+    static  Connection con=DbConnection.getConnection();
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("Faculty-login.jsp").forward(req, resp);
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         PrintWriter out = resp.getWriter();
-        Connection con = null;
+
+
         try{
-            DbConnection db = new DbConnection();
-            con=db.getConnection();
             PreparedStatement ps=con.prepareStatement("select * from faculty where username=? and password=?");
             ps.setString(1,username);
             ps.setString(2,password);
@@ -36,29 +41,21 @@ public class FacultyLogin extends HttpServlet {
             if(rs.next()){
                 HttpSession session = req.getSession();
                 session.setAttribute("user", username);
-                req.setAttribute("message", "Successfully logged in");
+                session.setAttribute("faculty", true);
+                session.setAttribute("msg", "Login Successful");
+                session.setAttribute("type", "success");
                req.getRequestDispatcher("FDashboard").forward(req, resp);
 
             }else {
-                req.setAttribute("error", "Invalid username or password!");
 
+                req.setAttribute("error", "Invalid username or password!");
+                req.setAttribute("msg", "Login Failed");
+                req.setAttribute("type", "error");
                 req.getRequestDispatcher("Faculty-login.jsp").forward(req, resp);
             }
         }
         catch(SQLException e){
             out.println(e);
         }
-        finally {
-
-            out.close();
-            try {
-                con.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-        }
-
-
     }
 }

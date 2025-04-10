@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class AllBooks extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("msg",null);
         request.getRequestDispatcher("AllBooks.jsp").forward(request, response);
     }
 }

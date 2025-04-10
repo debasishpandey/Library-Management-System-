@@ -13,8 +13,8 @@ import java.io.IOException;
 @WebServlet("/ReturnBook")
 public class ReturnBook extends HttpServlet {
 
-    BookDao bDaoObj =new BookDao();
-    RequestDetailsDao rDaoObj =new RequestDetailsDao();
+    BookDao bDaoObj =BookDao.getInstance();
+    RequestDetailsDao rDaoObj =RequestDetailsDao.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

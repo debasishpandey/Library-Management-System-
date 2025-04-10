@@ -15,13 +15,25 @@ import java.sql.*;
 import java.util.ArrayList;
 @WebServlet("/FDashboard")
 public class FacultyDashboard extends HttpServlet {
-    RequestDetailsDao requestDetailsDao = new RequestDetailsDao();
-    StudentDao studentDao = new StudentDao();
+    RequestDetailsDao requestDetailsDao = RequestDetailsDao.getInstance();
+    StudentDao studentDao =StudentDao.getInstance();
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        if (session != null && (boolean)session.getAttribute("faculty")) {
+             this.doPost(req, resp);
+
+        }else {
+            resp.sendRedirect("FLogin");
+        }
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
 
-        System.out.println("FacultyDashboard doPost");
+
         session.setAttribute("isStudent", false);
         ArrayList<Book> allBooks=BookDao.fetchAllBooks();
         session.setAttribute("allBooks", allBooks);
@@ -30,6 +42,7 @@ public class FacultyDashboard extends HttpServlet {
         session.setAttribute("allIssued",requestDetailsDao.fetchIssuedDetails());
         session.setAttribute("allDefaulter",requestDetailsDao.fetchDefaulterDetails());
         session.setAttribute("students", studentDao.fetchAllStudents());
+
 
       req.getRequestDispatcher("Faculty-Dashboard.jsp").forward(req, resp);
     }

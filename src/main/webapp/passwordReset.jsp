@@ -48,7 +48,7 @@
     <% Boolean isOtpValid = (Boolean) session.getAttribute("bool"); %>
     <% if (isOtpValid != null && isOtpValid) { %>
     <div id="otpSection" class="mt-4">
-      <form action="${pageContext.request.contextPath}/valid-otp" method="post">
+      <form action="valid-otp" method="post">
         <div class="mb-3">
           <label for="otp" class="form-label">Enter OTP:</label>
           <input type="text" id="otp" name="otp" class="form-control" required>

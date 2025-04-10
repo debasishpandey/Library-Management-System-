@@ -12,9 +12,9 @@ import java.sql.Date;
 import java.time.LocalDate;
 @WebServlet("/ReturnDefaulterBookk")
 public class ReturnDefaulterBook extends HttpServlet {
-    RequestDetailsDao requestDetailsDao = new RequestDetailsDao();
+    RequestDetailsDao requestDetailsDao = RequestDetailsDao.getInstance();
     PaymentDetailsDao paymentDetailsDao = new PaymentDetailsDao();
-    BookDao bookDao = new BookDao();
+    BookDao bookDao = BookDao.getInstance();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

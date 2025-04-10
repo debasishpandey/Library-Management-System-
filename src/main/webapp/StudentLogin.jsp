@@ -16,6 +16,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/ServerCheck.js" defer></script>
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+    <!-- jQuery (required for toastr) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <style>
         body {
             background: url('library-bg.jpg') no-repeat center center/cover;
@@ -69,6 +78,20 @@
     </style>
 </head>
 <body>
+<%String msg=(String)request.getAttribute("msg");
+    String type=(String)request.getAttribute("type");
+%>
+<script>
+    <% if (msg != null && type != null) { %>
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right"
+    };
+    toastr["<%= type %>"]("<%= msg %>");
+    <% request.removeAttribute("msg");
+    request.removeAttribute("type");} %>
+</script>
 <div class="container">
     <div class="library d-none d-md-block"></div>
     <div class="login-form" id="formContainer">
@@ -91,7 +114,7 @@
                 <a href="passwordReset.jsp" id="forgotPasswordLink">Forgot Password?</a>
             </p>
         </form>
-        <p class="text-center mt-3">Don't have an account? <a href="page" id="signupLink">Signup</a></p>
+        <p class="text-center mt-3">Don't have an account? <a href="Alogin" id="signupLink">Signup</a></p>
 
     </div>
 </div>

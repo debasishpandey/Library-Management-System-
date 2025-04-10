@@ -1,6 +1,7 @@
 package com.servlet;
 
 import com.util.DbConnection;
+import com.util.RequestDetailsDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,36 +15,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 @WebServlet("/Reject")
 public class RejectRequest extends HttpServlet {
+
+    RequestDetailsDao requestDetailsDao =RequestDetailsDao.getInstance();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        int id = Integer.parseInt(req.getParameter("requestId"));
-        Connection con = null;
-        try{
-            DbConnection db = new DbConnection();
-            con=db.getConnection();
-            PreparedStatement ps=con.prepareStatement("update bookrequest set status='Rejected' where requestid=?");
-            ps.setInt(1, id);
-            int row=ps.executeUpdate();
-
-
-
-            req.getRequestDispatcher("/FDashboard").forward(req, resp);
-
-
-        }
-        catch(SQLException  e){
-            System.out.println(e);
-        }
-        finally {
-
-
-            try {
-                con.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-        }
+        String id = req.getParameter("requestId");
+        requestDetailsDao.rejectRequest(id);
+        req.getRequestDispatcher("/FDashboard").forward(req, resp);
     }
 }

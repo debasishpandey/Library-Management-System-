@@ -63,7 +63,7 @@
                  data-name="${student.name.toLowerCase()}"
                  data-regno="${student.registrationNumber}">
                 <div class="d-flex align-items-center">
-                    <img src="./ProfilePhoto/${student.registrationNumber}.jpg" class="profile-pic me-3" alt="Profile Picture">
+                    <img src="./ProfilePhoto/${student.registrationNumber}.jpg" class="profile-pic me-3" onerror="this.onerror=null; this.src='./img/dpf.jpg';" alt="Image">
                     <div>
                         <h5>${student.name}</h5>
                         <p>Reg No: ${student.registrationNumber}</p>

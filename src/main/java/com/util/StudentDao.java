@@ -1,15 +1,22 @@
 package com.util;
 
+import lombok.Getter;
+
 import java.sql.*;
 import java.util.ArrayList;
 
 public class StudentDao {
+    @Getter
+    private static final StudentDao instance=new StudentDao();
+    static  Connection con=DbConnection.getConnection();
+    private StudentDao() {
+
+    }
     public boolean addStudent(Student student) {
 
-        Connection con = null;
+
         try{
-            DbConnection db = new DbConnection();
-            con=db.getConnection();
+
             PreparedStatement ps=con.prepareStatement("insert into student values(?,?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, student.getRegistrationNumber());
             ps.setString(2,student.getName());
@@ -33,10 +40,9 @@ public class StudentDao {
         return false;
     }
     public String loginStudent(String registrationNumber, String password) {
-        Connection con = null;
+
         try {
-            DbConnection db = new DbConnection();
-            con = db.getConnection();
+
             PreparedStatement ps=con.prepareStatement("SELECT * from student where registration_number=? and password=?");
             ps.setString(1, registrationNumber);
             ps.setString(2, password);
@@ -63,11 +69,10 @@ public class StudentDao {
     }
     public Student getStudent(String registrationNumber) {
 
-        Connection con = null;
+
         Student student = null;
         try {
-            DbConnection db = new DbConnection();
-            con = db.getConnection();
+
             PreparedStatement ps=con.prepareStatement("SELECT * from student where registration_number=? ");
             ps.setString(1, registrationNumber);
 
@@ -82,11 +87,10 @@ public class StudentDao {
     }
 
     public boolean changePassword(String registrationNo, String newPassword) {
-        Connection con = null;
+
         Student student = null;
         try {
-            DbConnection db = new DbConnection();
-            con = db.getConnection();
+
             PreparedStatement ps=con.prepareStatement("update student set password=? where registration_number=?");
             ps.setString(2, registrationNo);
             ps.setString(1, newPassword);
@@ -104,11 +108,10 @@ public class StudentDao {
     }
 
     public ArrayList<Student> fetchAllStudents() {
-        Connection con = null;
+
         ArrayList<Student> students=new ArrayList<>();
         try {
-            DbConnection db = new DbConnection();
-            con = db.getConnection();
+
             PreparedStatement ps=con.prepareStatement("select * from student");
 
          ResultSet rs= ps.executeQuery();
@@ -121,10 +124,9 @@ public class StudentDao {
         return students;
     }
     public boolean updateStudent(Student student) {
-        Connection con = null;
+
         try {
-            DbConnection db = new DbConnection();
-            con = db.getConnection();
+
             PreparedStatement ps=con.prepareStatement("UPDATE student \n" +
                     " SET email = ?, \n" +
                     "     phone_number = ?, \n" +

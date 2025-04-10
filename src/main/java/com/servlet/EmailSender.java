@@ -18,7 +18,7 @@ import java.sql.*;
 public class EmailSender extends HttpServlet {
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final int OTP_LENGTH = 6;
-    StudentDao studentDao = new StudentDao();
+    StudentDao studentDao = StudentDao.getInstance();
 
     public static String generateOtp() {
         SecureRandom random = new SecureRandom();
@@ -36,8 +36,10 @@ public class EmailSender extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Sending email");
         String registrationNo=req.getParameter("registrationNo");
+
         HttpSession session = req.getSession();
-        Student student  =studentDao.getStudent(registrationNo);
+        session.setAttribute("registrationNo", registrationNo);
+        Student student=studentDao.getStudent(registrationNo);
         String email = student.getEmail();
                 String otp = generateOtp();
                 String body="OTP for Account Verification is "+otp;
@@ -53,7 +55,7 @@ public class EmailSender extends HttpServlet {
                 }
 
             else {
-                req.setAttribute("error", "Please provide registered email!");
+                req.setAttribute("error", "Please provide registered registration no");
                 req.getRequestDispatcher("passwordReset.jsp").forward(req, resp);
             }
 
