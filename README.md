@@ -23,7 +23,7 @@ A full-stack web application for managing a library's daily operations such as i
 | MySQL        | Database             |
 | HTML, CSS    | Frontend Structure & Styling |
 | Bootstrap    | Responsive UI Design |
-| IntelliJ IDEA (Community Edition) | IDE |
+| IntelliJ IDEA ( ULTIMATE ) | IDE |
 | Smart Tomcat | Server Deployment    |
 
 ## 📁 Folder Structure
